@@ -7,8 +7,8 @@ class BaseDB:
     
 
     def create(self, data:dict):
-        columns = data.keys()
-        plase_holders = ", ".join("%s" * len(columns))
+        columns = ", ".join([k for k in data.keys()])
+        plase_holders = ", ".join(["%s"] * len(data.keys()))
         values = list(data.values())
         query = f"""
                 INSERT INTO {self.table_name}
@@ -16,46 +16,50 @@ class BaseDB:
                 VALUES ({plase_holders})
                 """
 
-        with db.conn.cursor(dictionary=True) as cursor:
+        with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(query, values)
             agent_id = cursor.lastrowid
-            db.conn.commit()
+            db.connect.commit()
         
         return self.get_by_id(agent_id)
 
 
     def get_all(self):
-        with db.conn.cursor(dictionary=True) as cursor:
+        with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(f"SELECT * FROM {self.table_name}")
+            
             all = cursor.fetchall()
+            if not all:
+                return []
         
         return all
     
 
     def get_by_id(self, id):
-        with db.conn.cursor(dictionary=True) as cursor:
+        with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(f"""
                             SELECT * FROM {self.table_name}
                             WHERE id = %s"""
                             , [id])
             
             line = cursor.fetchone()
-        
+            if not line:
+                return "id not found"
+            
         return line
 
 
     def update(self, id, data):
-        columns = ", ".join(f"{k} = %s" for k in data.keys())
+        columns = ", ".join([f"{k} = %s" for k in data.keys()])
         values = list(data.values()) + [id]
         query = f"""
                 UPDATE {self.table_name}
                 SET {columns}
                 WHERE id = %s
-                )"""
+                """
         
-        with db.conn.cursor(dictionary=True) as cursor:
+        with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(query, values)
-            db.conn.commit()
+            db.connect.commit()
         
-        agent_id = self.get_by_id(id)
-        return self.get_by_id(agent_id)
+        return "Updated successfully"
