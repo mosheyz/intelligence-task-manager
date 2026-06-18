@@ -1,0 +1,299 @@
+2026-06-18 10:37:01,214 | INFO | test
+2026-06-18 10:39:47,480 | INFO | test
+2026-06-18 11:01:33,809 | INFO | POST /agents called
+2026-06-18 11:02:36,917 | INFO | POST /agents called
+2026-06-18 11:06:20,913 | INFO | POST /agents called
+2026-06-18 11:06:20,967 | INFO | Agent created successfully: id=5
+2026-06-18 11:06:33,618 | INFO | POST /agents called
+2026-06-18 11:06:33,645 | INFO | Agent created successfully: id=6
+2026-06-18 11:22:16,984 | INFO | GET /agents called
+2026-06-18 11:22:16,991 | INFO | getting successfully all agents
+2026-06-18 11:22:31,961 | INFO | GET /agents/4 called
+2026-06-18 11:22:31,967 | INFO | gettig agent: 4 successully
+2026-06-18 11:22:37,806 | INFO | GET /agents/7 called
+2026-06-18 11:22:37,845 | INFO | gettig agent: 7 successully
+2026-06-18 11:23:44,102 | INFO | GET /agents/5 called
+2026-06-18 11:23:44,107 | INFO | gettig agent: 5 successully
+2026-06-18 11:23:47,695 | INFO | GET /agents/8 called
+2026-06-18 11:23:47,699 | ERROR | agent not found: 8
+2026-06-18 11:24:47,331 | INFO | PUT /agents/4 called
+2026-06-18 11:24:47,331 | INFO | start updating agent 4
+2026-06-18 11:27:30,923 | INFO | PUT /agents/4 called
+2026-06-18 11:27:30,923 | INFO | start updating agent 4
+2026-06-18 11:27:30,988 | INFO | agent 4 updated successfully
+2026-06-18 11:27:40,308 | INFO | GET /agents/4 called
+2026-06-18 11:27:40,313 | INFO | gettig agent: 4 successully
+2026-06-18 11:27:53,231 | INFO | GET /agents called
+2026-06-18 11:27:53,249 | INFO | getting successfully all agents
+2026-06-18 11:39:25,411 | INFO | PUT /agents/4 called
+2026-06-18 11:39:25,412 | INFO | start deactivating agent 4
+2026-06-18 11:39:25,439 | INFO | deactivate agent 4 successfully
+2026-06-18 11:39:33,570 | INFO | GET /agents/4 called
+2026-06-18 11:39:33,575 | INFO | gettig agent: 4 successully
+2026-06-18 11:39:41,649 | INFO | GET /agents called
+2026-06-18 11:39:41,655 | INFO | getting successfully all agents
+2026-06-18 11:39:55,791 | INFO | GET /{id}/performance called
+2026-06-18 11:40:33,276 | INFO | GET /{id}/performance called
+2026-06-18 11:40:33,315 | INFO | getting agent 5 performance successfully
+2026-06-18 11:40:39,382 | INFO | GET /agents called
+2026-06-18 11:40:39,387 | INFO | getting successfully all agents
+2026-06-18 11:40:50,462 | INFO | GET /{id}/performance called
+2026-06-18 11:40:50,467 | INFO | getting agent 5 performance successfully
+2026-06-18 11:57:33,733 | INFO | GET /missions called
+2026-06-18 11:57:33,762 | INFO | getting successfully all missions
+2026-06-18 11:57:42,476 | INFO | POST /missions called
+2026-06-18 11:57:42,477 | INFO | start creating mission..
+2026-06-18 11:59:38,086 | INFO | POST /missions called
+2026-06-18 11:59:38,087 | INFO | start creating mission..
+2026-06-18 12:01:24,117 | INFO | POST /missions called
+2026-06-18 12:01:24,118 | INFO | start creating mission..
+2026-06-18 12:01:55,190 | INFO | POST /missions called
+2026-06-18 12:01:55,190 | INFO | start creating mission..
+2026-06-18 12:01:55,209 | INFO | mission created successfully: id=7
+2026-06-18 12:34:10,073 | INFO | GET /missions called
+2026-06-18 12:34:10,078 | INFO | getting successfully all missions
+2026-06-18 12:34:38,850 | INFO | PUT /1/complete called
+2026-06-18 12:34:38,855 | ERROR | invalid change
+2026-06-18 12:34:58,573 | INFO | GET /missions called
+2026-06-18 12:34:58,576 | INFO | getting successfully all missions
+2026-06-18 12:35:41,485 | INFO | PUT /1/complete called
+2026-06-18 12:35:41,491 | ERROR | invalid change
+2026-06-18 12:36:54,711 | INFO | PUT /1/complete called
+2026-06-18 12:36:54,716 | ERROR | invalid change
+2026-06-18 12:41:24,272 | INFO | GET /missions called
+2026-06-18 12:41:24,275 | INFO | getting successfully all missions
+2026-06-18 12:43:35,527 | INFO | GET /missions called
+2026-06-18 12:43:35,529 | INFO | getting successfully all missions
+2026-06-18 12:43:39,929 | INFO | GET /missions called
+2026-06-18 12:43:39,932 | INFO | getting successfully all missions
+2026-06-18 12:43:47,944 | INFO | PUT /3/start called
+2026-06-18 12:43:47,957 | INFO | start mission 3 successfully
+2026-06-18 12:43:56,020 | INFO | PUT /4/start called
+2026-06-18 12:43:56,038 | INFO | start mission 4 successfully
+2026-06-18 12:43:58,720 | INFO | PUT /4/start called
+2026-06-18 12:43:58,723 | ERROR | invalid change
+2026-06-18 15:03:12,620 | INFO | GET /reports/summary called
+2026-06-18 15:07:32,643 | INFO | GET /reports/summary called
+2026-06-18 15:13:37,016 | INFO | GET /reports/summary called
+2026-06-18 15:30:22,066 | INFO | connection start
+2026-06-18 15:30:27,985 | INFO | connection close
+2026-06-18 15:30:28,872 | INFO | connection start
+2026-06-18 15:37:35,223 | INFO | connection close
+2026-06-18 15:37:36,657 | INFO | connection start
+2026-06-18 15:37:55,237 | INFO | GET /missions/5 called
+2026-06-18 15:37:55,240 | INFO | gettig mission: 5 successully
+2026-06-18 15:38:05,451 | INFO | GET /missions/8 called
+2026-06-18 15:38:05,455 | ERROR | mission not found: 8
+2026-06-18 15:38:46,804 | INFO | connection close
+2026-06-18 15:38:47,793 | INFO | connection start
+2026-06-18 15:39:20,971 | INFO | connection close
+2026-06-18 15:39:21,960 | INFO | connection start
+2026-06-18 15:39:28,741 | INFO | connection close
+2026-06-18 15:39:29,653 | INFO | connection start
+2026-06-18 15:39:34,259 | INFO | connection close
+2026-06-18 15:39:35,213 | INFO | connection start
+2026-06-18 15:39:40,055 | INFO | connection close
+2026-06-18 15:39:44,636 | INFO | connection start
+2026-06-18 15:39:52,840 | INFO | connection close
+2026-06-18 15:51:54,582 | INFO | table created successfuly
+2026-06-18 15:53:31,672 | INFO | connection start
+2026-06-18 15:55:52,221 | INFO | GET /agents called
+2026-06-18 15:55:52,221 | INFO | start getting all agents..
+2026-06-18 15:55:52,224 | INFO | getting successfully all agents
+2026-06-18 15:56:07,429 | INFO | POST /agents called
+2026-06-18 15:56:07,429 | INFO | start creating agent..
+2026-06-18 15:56:07,429 | ERROR | invalid data
+2026-06-18 15:56:24,553 | INFO | POST /agents called
+2026-06-18 15:56:24,554 | INFO | start creating agent..
+2026-06-18 15:56:24,575 | INFO | Agent created successfully: id=1
+2026-06-18 15:56:27,359 | INFO | GET /agents called
+2026-06-18 15:56:27,360 | INFO | start getting all agents..
+2026-06-18 15:56:27,362 | INFO | getting successfully all agents
+2026-06-18 15:56:49,301 | INFO | POST /agents called
+2026-06-18 15:56:49,301 | INFO | start creating agent..
+2026-06-18 15:56:49,316 | INFO | Agent created successfully: id=2
+2026-06-18 15:57:01,324 | INFO | GET /agents called
+2026-06-18 15:57:01,325 | INFO | start getting all agents..
+2026-06-18 15:57:01,328 | INFO | getting successfully all agents
+2026-06-18 15:57:13,361 | INFO | GET /agents/1 called
+2026-06-18 15:57:13,361 | INFO | start gettig agent: 1..
+2026-06-18 15:57:13,363 | INFO | gettig agent: 1 successully
+2026-06-18 15:57:16,761 | INFO | GET /agents/2 called
+2026-06-18 15:57:16,761 | INFO | start gettig agent: 2..
+2026-06-18 15:57:16,764 | INFO | gettig agent: 2 successully
+2026-06-18 15:57:20,550 | INFO | GET /agents/3 called
+2026-06-18 15:57:20,551 | INFO | start gettig agent: 3..
+2026-06-18 15:57:20,554 | ERROR | agent not found: 3
+2026-06-18 15:57:39,716 | INFO | PUT /agents/1 called
+2026-06-18 15:57:39,716 | INFO | start updating agent 1
+2026-06-18 15:57:39,719 | ERROR | invalid data
+2026-06-18 15:57:51,804 | INFO | PUT /agents/1 called
+2026-06-18 15:57:51,804 | INFO | start updating agent 1
+2026-06-18 15:57:51,823 | INFO | agent 1 updated successfully
+2026-06-18 15:57:57,215 | INFO | GET /agents called
+2026-06-18 15:57:57,216 | INFO | start getting all agents..
+2026-06-18 15:57:57,218 | INFO | getting successfully all agents
+2026-06-18 15:58:16,434 | INFO | PUT /agents/1 called
+2026-06-18 15:58:16,434 | INFO | start updating agent 1
+2026-06-18 15:58:16,439 | ERROR | invalid data
+2026-06-18 15:58:30,992 | INFO | PUT /agents/1 called
+2026-06-18 15:58:30,992 | INFO | start deactivating agent 1
+2026-06-18 15:58:31,006 | INFO | deactivate agent 1 successfully
+2026-06-18 15:58:39,224 | INFO | PUT /agents/4 called
+2026-06-18 15:58:39,224 | INFO | start deactivating agent 4
+2026-06-18 15:58:39,228 | ERROR | agent not found: 4
+2026-06-18 15:58:54,073 | INFO | PUT /agents/1 called
+2026-06-18 15:58:54,074 | INFO | start deactivating agent 1
+2026-06-18 15:58:54,082 | INFO | deactivate agent 1 successfully
+2026-06-18 15:58:57,616 | INFO | PUT /agents/1 called
+2026-06-18 15:58:57,616 | INFO | start deactivating agent 1
+2026-06-18 15:58:57,624 | INFO | deactivate agent 1 successfully
+2026-06-18 15:59:05,019 | INFO | GET /{id}/performance called
+2026-06-18 15:59:05,022 | INFO | getting agent 2 performance successfully
+2026-06-18 15:59:15,037 | INFO | GET /missions called
+2026-06-18 15:59:15,040 | INFO | getting successfully all missions
+2026-06-18 15:59:23,376 | INFO | GET /missions called
+2026-06-18 15:59:23,379 | INFO | getting successfully all missions
+2026-06-18 15:59:42,259 | INFO | POST /missions called
+2026-06-18 15:59:42,259 | INFO | start creating mission..
+2026-06-18 15:59:42,278 | INFO | mission created successfully: id=1
+2026-06-18 15:59:55,292 | INFO | POST /missions called
+2026-06-18 15:59:55,292 | INFO | start creating mission..
+2026-06-18 15:59:55,293 | ERROR | invalid data
+2026-06-18 16:00:16,060 | INFO | POST /missions called
+2026-06-18 16:00:16,061 | INFO | start creating mission..
+2026-06-18 16:00:16,072 | INFO | mission created successfully: id=2
+2026-06-18 16:00:27,237 | INFO | POST /missions called
+2026-06-18 16:00:27,237 | INFO | start creating mission..
+2026-06-18 16:00:27,253 | INFO | mission created successfully: id=3
+2026-06-18 16:00:34,443 | INFO | GET /missions called
+2026-06-18 16:00:34,448 | INFO | getting successfully all missions
+2026-06-18 16:01:04,567 | INFO | GET /missions/1 called
+2026-06-18 16:01:04,571 | INFO | gettig mission: 1 successully
+2026-06-18 16:01:08,565 | INFO | GET /missions/6 called
+2026-06-18 16:01:08,568 | ERROR | mission not found: 6
+2026-06-18 16:01:09,049 | INFO | GET /missions/6 called
+2026-06-18 16:01:09,052 | ERROR | mission not found: 6
+2026-06-18 16:01:18,259 | INFO | GET /missions/7 called
+2026-06-18 16:01:18,262 | ERROR | mission not found: 7
+2026-06-18 16:01:20,086 | INFO | GET /missions/2 called
+2026-06-18 16:01:20,091 | INFO | gettig mission: 2 successully
+2026-06-18 16:02:05,110 | INFO | PUT /1/assign/1 called
+2026-06-18 16:02:05,111 | INFO | start assigning mission 1 for agent 1..
+2026-06-18 16:02:05,119 | ERROR | agent 1 is not active
+2026-06-18 16:02:14,642 | INFO | PUT /1/assign/2 called
+2026-06-18 16:02:14,642 | INFO | start assigning mission 1 for agent 2..
+2026-06-18 16:02:14,667 | INFO | assigning mission 1 for agent 2
+2026-06-18 16:02:46,534 | INFO | GET /{id}/performance called
+2026-06-18 16:02:46,537 | INFO | getting agent 2 performance successfully
+2026-06-18 16:03:09,700 | INFO | PUT /1/start called
+2026-06-18 16:03:09,717 | INFO | start mission 1 successfully
+2026-06-18 16:03:17,559 | INFO | PUT /2/start called
+2026-06-18 16:03:17,562 | ERROR | invalid change
+2026-06-18 16:03:32,862 | INFO | GET /missions called
+2026-06-18 16:03:32,866 | INFO | getting successfully all missions
+2026-06-18 16:03:47,906 | INFO | PUT /1/complete called
+2026-06-18 16:03:47,935 | INFO | complete mission 1 successfully
+2026-06-18 16:03:58,317 | INFO | GET /{id}/performance called
+2026-06-18 16:03:58,320 | INFO | getting agent 2 performance successfully
+2026-06-18 16:04:22,209 | INFO | PUT /1/complete called
+2026-06-18 16:04:22,212 | ERROR | invalid change
+2026-06-18 16:04:26,585 | INFO | PUT /2/complete called
+2026-06-18 16:04:26,588 | ERROR | invalid change
+2026-06-18 16:04:35,755 | INFO | PUT /2/assign/2 called
+2026-06-18 16:04:35,755 | INFO | start assigning mission 2 for agent 2..
+2026-06-18 16:04:35,780 | INFO | assigning mission 2 for agent 2
+2026-06-18 16:04:50,784 | INFO | PUT /2/start called
+2026-06-18 16:04:50,806 | INFO | start mission 2 successfully
+2026-06-18 16:05:02,606 | INFO | PUT /2/fail called
+2026-06-18 16:05:02,633 | INFO | fail mission 2 successfully
+2026-06-18 16:05:07,224 | INFO | PUT /4/fail called
+2026-06-18 16:05:07,227 | ERROR | mission not found: 4
+2026-06-18 16:05:13,207 | INFO | GET /{id}/performance called
+2026-06-18 16:05:13,210 | INFO | getting agent 2 performance successfully
+2026-06-18 16:05:30,769 | INFO | PUT /4/assign/3 called
+2026-06-18 16:05:30,769 | INFO | start assigning mission 4 for agent 3..
+2026-06-18 16:05:30,772 | ERROR | agent not found: 3
+2026-06-18 16:05:34,904 | INFO | PUT /4/assign/2 called
+2026-06-18 16:05:34,905 | INFO | start assigning mission 4 for agent 2..
+2026-06-18 16:05:34,910 | ERROR | mission not found: 4
+2026-06-18 16:05:38,807 | INFO | PUT /3/assign/2 called
+2026-06-18 16:05:38,807 | INFO | start assigning mission 3 for agent 2..
+2026-06-18 16:05:38,833 | INFO | assigning mission 3 for agent 2
+2026-06-18 16:06:07,172 | INFO | POST /agents called
+2026-06-18 16:06:07,172 | INFO | start creating agent..
+2026-06-18 16:06:07,187 | INFO | Agent created successfully: id=3
+2026-06-18 16:06:22,839 | INFO | PUT /3/assign/3 called
+2026-06-18 16:06:22,839 | INFO | start assigning mission 3 for agent 3..
+2026-06-18 16:06:22,848 | ERROR | only Commander can handle critical missions
+2026-06-18 16:06:28,141 | INFO | PUT /3/assign/2 called
+2026-06-18 16:06:28,141 | INFO | start assigning mission 3 for agent 2..
+2026-06-18 16:06:28,150 | ERROR | mission 3 not available
+2026-06-18 16:06:46,415 | INFO | POST /missions called
+2026-06-18 16:06:46,415 | INFO | start creating mission..
+2026-06-18 16:06:46,432 | INFO | mission created successfully: id=4
+2026-06-18 16:06:51,642 | INFO | POST /missions called
+2026-06-18 16:06:51,643 | INFO | start creating mission..
+2026-06-18 16:06:51,657 | INFO | mission created successfully: id=5
+2026-06-18 16:06:55,820 | INFO | POST /missions called
+2026-06-18 16:06:55,820 | INFO | start creating mission..
+2026-06-18 16:06:55,833 | INFO | mission created successfully: id=6
+2026-06-18 16:07:06,283 | INFO | PUT /4/assign/2 called
+2026-06-18 16:07:06,284 | INFO | start assigning mission 4 for agent 2..
+2026-06-18 16:07:06,308 | INFO | assigning mission 4 for agent 2
+2026-06-18 16:07:09,785 | INFO | PUT /5/assign/2 called
+2026-06-18 16:07:09,785 | INFO | start assigning mission 5 for agent 2..
+2026-06-18 16:07:09,805 | INFO | assigning mission 5 for agent 2
+2026-06-18 16:07:15,882 | INFO | PUT /6/assign/2 called
+2026-06-18 16:07:15,882 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:07:15,891 | ERROR | agent 2 has reached maximum missions
+2026-06-18 16:08:20,766 | INFO | PUT /6/assign/7 called
+2026-06-18 16:08:20,767 | INFO | start assigning mission 6 for agent 7..
+2026-06-18 16:08:20,770 | ERROR | agent not found: 7
+2026-06-18 16:08:26,628 | INFO | PUT /6/assign/2 called
+2026-06-18 16:08:26,628 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:08:26,636 | ERROR | agent 2 has reached maximum missions
+2026-06-18 16:08:40,743 | INFO | connection close
+2026-06-18 16:08:42,061 | INFO | connection start
+2026-06-18 16:08:42,174 | INFO | PUT /6/assign/2 called
+2026-06-18 16:08:42,174 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:08:42,183 | ERROR | agent 2 has reached maximum missions
+2026-06-18 16:08:42,912 | INFO | PUT /6/assign/2 called
+2026-06-18 16:08:42,912 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:08:42,921 | ERROR | agent 2 has reached maximum missions
+2026-06-18 16:08:47,498 | INFO | connection close
+2026-06-18 16:08:48,495 | INFO | connection start
+2026-06-18 16:08:48,505 | INFO | PUT /6/assign/2 called
+2026-06-18 16:08:48,506 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:08:48,518 | ERROR | agent 6 has reached maximum missions
+2026-06-18 16:08:50,123 | INFO | PUT /6/assign/2 called
+2026-06-18 16:08:50,123 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:08:50,131 | ERROR | agent 6 has reached maximum missions
+2026-06-18 16:09:09,593 | INFO | connection close
+2026-06-18 16:09:10,737 | INFO | connection start
+2026-06-18 16:09:10,757 | INFO | PUT /6/assign/2 called
+2026-06-18 16:09:10,758 | INFO | start assigning mission 6 for agent 2..
+2026-06-18 16:09:10,767 | ERROR | agent 2 has reached maximum missions
+2026-06-18 16:09:25,841 | INFO | PUT /2/start called
+2026-06-18 16:09:25,846 | ERROR | invalid change
+2026-06-18 16:09:29,647 | INFO | PUT /3/start called
+2026-06-18 16:09:29,670 | INFO | start mission 3 successfully
+2026-06-18 16:09:33,167 | INFO | PUT /5/start called
+2026-06-18 16:09:33,185 | INFO | start mission 5 successfully
+2026-06-18 16:09:42,309 | INFO | GET /reports/summary called
+2026-06-18 16:09:42,324 | INFO | succesfully get summary
+2026-06-18 16:10:04,966 | INFO | GET /agents called
+2026-06-18 16:10:04,966 | INFO | start getting all agents..
+2026-06-18 16:10:04,969 | INFO | getting successfully all agents
+2026-06-18 16:10:28,634 | INFO | GET /reports/summary called
+2026-06-18 16:10:28,656 | INFO | succesfully get summary
+2026-06-18 16:10:41,297 | INFO | GET /reports/missions-by-status called
+2026-06-18 16:10:41,302 | INFO | succesfully get missions by status
+2026-06-18 16:10:51,771 | INFO | GET /reports/top-agent
+2026-06-18 16:10:51,776 | INFO | succesfully get top member
+2026-06-18 16:13:04,775 | INFO | connection close
+2026-06-18 16:13:05,725 | INFO | connection start
+2026-06-18 16:13:12,093 | INFO | connection close
+2026-06-18 16:13:13,036 | INFO | connection start
+2026-06-18 16:15:35,083 | INFO | GET /{id}/performance called
+2026-06-18 16:15:35,086 | INFO | getting agent 3 performance successfully
