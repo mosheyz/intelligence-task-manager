@@ -17,7 +17,7 @@ class UpdateAgent(BaseModel):
 
 router = APIRouter(prefix="/agents", tags=["agents"])
 
-@router.post("")
+@router.post("", status_code=201)
 def create_agent(data: CreateAgent):
     logger.info("POST /agents called")
     logger.info("start creating agent..")
@@ -69,7 +69,7 @@ def update_agent(id: int, data: UpdateAgent):
         raise HTTPException(status_code=400, detail="invalid data")
     
     logger.info(f"agent {id} updated successfully")
-    return {"message": f"agent {id} updated successfully"}
+    return result
     
 
 @router.put("/{id}/deactivate")
