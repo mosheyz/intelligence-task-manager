@@ -17,24 +17,18 @@ class MissionDB(BaseDB):
             return "invalid data"
         
         for k, v in data.items():
-            if k == "importance" or k == "difficulty":
+            if k in ("importance", "difficulty"):
                 if data[k] > 10 or data[k] < 1:
                     raise Exception ("invalid data")
-                
-            if k == "status":
-                if data[k] not in valid_status:
-                    raise Exception ("invalid status")
-                
-            if k in optional_fields:
-                checked_data[k] = v
         
         checked_data["risk_level"] = self.calculate_risk_level(checked_data["difficulty"], checked_data["importance"])
         
         return self.create(checked_data)
 
-    def calculate_risk_level(self, difficulty, importanse):
 
-        risk_num = difficulty * 2 + importanse
+    def calculate_risk_level(self, difficulty, importance):
+
+        risk_num = (int(difficulty) * 2) + int(importance)
         
         if 9 >= risk_num > 0:
             risk_level = "LOW"
@@ -63,37 +57,48 @@ class MissionDB(BaseDB):
             return "id not found"
         
         for k, v in data.items():
-            if k == "importance" or k == "difficulty":
+            if k in ("importance", "difficulty"):
                 if data[k] > 10 or data[k] < 1:
                     raise Exception ("invalid data")
-                
-            if k == "status":
-                if data[k] not in valid_status:
-                    raise Exception ("invalid status")
                             
-        checked_data = {k:v for k, v in data.items() if k in valid_fields or k in optional_fields}
-        for k, v in checked_data.items():
-
-            if k == "status":
-                if checked_data[k] == "IN_PROGRESS" and mission[k] != "ASSIGNED":
-                    raise Exception ("invalid change")
-            
-                if checked_data[k] == "FAILED" or checked_data[k] == "COMPLETED" and mission[k] != "IN_PROGRESS":
-                    raise Exception ("invalid change")
-                
-                if checked_data[k] == "CANCELLED" and (mission[k] != "NEW" or mission[k] != "ASSIGNED"):
-                    raise Exception ("invalid change")
-
-                
+        checked_data = {k:v for k, v in data.items() if k in valid_fields}
+        
         if not checked_data:
             raise Exception ("invalid data")
         
-        return self.update(id, data)
+        importance = checked_data.get("importance", mission["importance"])
+        difficulty = checked_data.get("difficulty", mission["difficulty"])
+        checked_data["risk_level"] = self.calculate_risk_level(difficulty, importance)
+        
+        if checked_data["risk_level"] == "CRITICAL" and agents.get_agent_by_id(mission["assigned_agent_id"])["agent_rank"] != "Commander":
+            raise Exception ("to low rank for this mission")
+        
+        return self.update(id, checked_data)
+    
+    def update_mission_status(self, id, status):
+        mission = self.get_mission_by_id(id)
+        if mission == "id not found":
+            return "id not found"
+
+        if status not in valid_status:
+            raise Exception ("invalid status")
+        
+        if status == "IN_PROGRESS" and mission["status"] != "ASSIGNED":
+            raise Exception ("invalid change")
+    
+        if status in ("FAILED", "COMPLETED") and mission["status"] != "IN_PROGRESS":
+            raise Exception ("invalid change")
+        
+        if status == "CANCELLED" and mission["status"] not in ("NEW", "ASSIGNED"):
+            raise Exception ("invalid change")
+        
+        return self.update(id, {"status": status})
+
     
     def assign_mission(self, m_id, a_id):
         agent = agents.get_agent_by_id(a_id)
         if agent == "id not found":
-            return "agent id not found"
+            return "id not found"
         
         mission = self.get_mission_by_id(m_id)
         if mission == "id not found":
@@ -102,7 +107,7 @@ class MissionDB(BaseDB):
         if self.count_open_missions_by_agent(a_id) >= 3:
             raise Exception ("agent has more than 3 missions open")
         
-        if agent["is_active"] == 0:
+        if not agent["is_active"]:
             raise Exception ("agent not active")
     
         if mission["risk_level"] == "CRITICAL" and agent["agent_rank"] != "Commander":
@@ -111,7 +116,7 @@ class MissionDB(BaseDB):
         if mission["status"] != "NEW":
             raise Exception ("invalid status")
         
-        return self.update_mission(m_id, {"assigned_agent_id": a_id, "status": "ASSIGNED"})
+        return self.update(m_id, {"assigned_agent_id": a_id, "status": "ASSIGNED"})
         
     def count_open_missions_by_agent(self, id):
         agent = agents.get_agent_by_id(id)
@@ -119,7 +124,11 @@ class MissionDB(BaseDB):
             return "agent id not found"
         
         with db.connect.cursor(dictionary=True) as cursor:
-            cursor.execute(F"SELECT COUNT(*) AS total FROM {self.table_name} WHERE assigned_agent_id = %s", [id])
+            cursor.execute(F"""SELECT COUNT(*) AS total FROM {self.table_name}
+                           WHERE assigned_agent_id = %s
+                           AND status IN ('ASSIGNED', 'IN_PROGRESS')
+                           """
+                           , [id])
             num = cursor.fetchone()
             return num["total"]
     
@@ -129,48 +138,60 @@ class MissionDB(BaseDB):
             return "agent id not found"
         
         with db.connect.cursor(dictionary=True) as cursor:
-            cursor.execute(F"SELECT * FROM {self.table_name} WHERE assigned_agent_id = %s", [id])
-            mis = cursor.fetchall()
-            if not mis:
-                return "no open missions"
-            return mis
+            cursor.execute(F"""SELECT * FROM {self.table_name}
+                           WHERE assigned_agent_id = %s
+                           AND status IN ('ASSIGNED', 'IN_PROGRESS')
+                           """
+                           , [id])
+            _missions = cursor.fetchall()
+            if not _missions:
+                return []
+            return _missions
         
     def count_all_missions(self):
         with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(f"SELECT COUNT(*) as total FROM {self.table_name}")
-            missions = cursor.fetchone["total"]
+            missions = cursor.fetchone()["total"]
             return missions
         
     def count_by_status(self, status):
         with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(f"SELECT status, COUNT(*) as total FROM {self.table_name} WHERE status = %s", [status])
-            missions = cursor.fetchall()
+            missions = cursor.fetchone()["total"]
             return missions
         
-    def count_open_misions(self):
+    def count_open_missions(self):
         with db.connect.cursor(dictionary=True) as cursor:
-            cursor.execute(F"SELECT COUNT(*) FROM {self.table_name} WHERE status = ASSIGNED")
-            num1 = cursor.fetchone()
-            cursor.execute(F"SELECT COUNT(*) FROM {self.table_name} WHERE status = IN_PROGRESS")
-            num2 = cursor.fetchone()
-            return num1 + num2
+            cursor.execute(f"""SELECT COUNT(*) AS total FROM {self.table_name}
+                           WHERE status IN
+                           ('ASSIGNED', 'IN_PROGRESS')""")
+            open_missions =cursor.fetchone()["total"]
+            return open_missions
         
     def count_critical_missions(self):
         with db.connect.cursor(dictionary=True) as cursor:
-            cursor.execute(f"SELECT COUNT(*) as total FROM {self.table_name} WHERE risk_level = CRITICAL")
-            missions = cursor.fetchone["total"]
+            cursor.execute(f"""SELECT COUNT(*) as total FROM {self.table_name}
+                           WHERE risk_level = 'CRITICAL'
+                           """)
+            missions = cursor.fetchone()["total"]
             return missions
         
     def get_top_agent(self):
         with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(f"SELECT MAX(completed_missions) AS top_agent FROM {agents.table_name}")
-            top = cursor.fetchone["top_agent"]
-            cursor.execute(f"SELECT * FROM {agents.table_name} WHERE completed_missions = {top}")
+            top = cursor.fetchone()["top_agent"]
+            cursor.execute(f"""SELECT * FROM {agents.table_name}
+                           WHERE completed_missions = %s
+                           """
+                           , [top])
 
-            agents = cursor.fetchall()
+            _agents = cursor.fetchall()
+            if not _agents:
+                return []
+                
+            return _agents
 
-            return agents
-        
+
 missions = MissionDB()
 
 
