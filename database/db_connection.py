@@ -1,4 +1,5 @@
 import mysql.connector
+from logs.logger_config import logger
 
 
 class DB():
@@ -24,6 +25,7 @@ class DB():
             self.conn = self.get_connection()
             with self.conn.cursor(dictionary=True) as cursor:
                 cursor.execute("USE Intelligence_db")
+            logger.info("connected to database successfully")
         return self.conn
     
 
@@ -35,10 +37,10 @@ class DB():
             cursor.execute(create_query)
 
             if cursor.warning_count == 0:
-                print("database created successfuly")
+                logger.info("database created successfuly")
 
             cursor.execute(use_query)
-            
+
 
     def create_tables(self):
         agents_query ="""
@@ -60,8 +62,8 @@ class DB():
             location VARCHAR(100) NOT NULL ,
             difficulty INT NOT NULL CHECK(difficulty BETWEEN 1 AND 10) ,
             importance INT NOT NULL CHECK(importance BETWEEN 1 AND 10) ,
-            status ENUM("NEW", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "FAILED", "CANCELLED") DEFAULT "NEW" ,
-            risk_level ENUM("LOW", "MEDIUM", "HIGH", "CRITICAL") ,
+            status ENUM('NEW', 'ASSIGNED', 'IN_PROGRESS', 'COMPLETED', 'FAILED', 'CANCELLED') DEFAULT 'NEW' ,
+            risk_level ENUM('LOW', 'MEDIUM', 'HIGH', 'CRITICAL') ,
             assigned_agent_id INT
             )"""
 
@@ -69,7 +71,7 @@ class DB():
             cursor.execute(agents_query)
 
             if cursor.warning_count == 0:
-                print("table created successfuly")
+                logger.info("table created successfuly")
 
             cursor.execute(missions_query)
             

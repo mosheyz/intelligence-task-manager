@@ -1,4 +1,4 @@
-from database.agent_db import agents
+
 from database.mission_db import missions
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -32,8 +32,9 @@ def create_mission(data: CreateMission):
         logger.error("invalid data")
         raise HTTPException(status_code=400, detail="invalid data")
     
-    logger.info(f"mission created successfully: id={result["id"]}")
-    return result
+    logger.info(f"mission created successfully: id={result['id']}")
+    return {"message": f"mission created successfully: id={result['id']}",
+            "data": result}
 
 
 @router.get("")
@@ -43,7 +44,8 @@ def get_all_missions():
     result = missions.get_all_missions()
     
     logger.info("getting successfully all missions")
-    return result
+    return {"message": "getting successfully all missions",
+            "data": result}
 
 
 @router.get("/{id}")
@@ -56,7 +58,8 @@ def get_mission_by_id(id: int):
         raise HTTPException(status_code=404, detail=f"mission not found: {id}")
     
     logger.info(f"gettig mission: {id} successully")
-    return result
+    return {"message": f"gettig mission: {id} successully",
+            "data": result}
 
 
 @router.put("/{id}/assign/{agent_id}")
@@ -65,17 +68,17 @@ def assign_mission(id: int, agent_id: int):
     logger.info(f"start assigning mission {id} for agent {agent_id}..")
 
     result = missions.assign_mission(id, agent_id)
-    if result == "id not found":
+    if result == "mission id not found":
         logger.error(f"mission not found: {id}")
         raise HTTPException(status_code=404, detail=f"mission not found: {id}")
     
-    if result == "id not found":
+    if result == "agent id not found":
         logger.error(f"agent not found: {agent_id}")
         raise HTTPException(status_code=404, detail=f"agent not found: {agent_id}")
     
     if result == "agent has reached maximum missions":
         logger.error(f"agent {agent_id} has reached maximum missions")
-        raise HTTPException(status_code=400, detail=f"agent {id} has reached maximum missions")
+        raise HTTPException(status_code=400, detail=f"agent {agent_id} has reached maximum missions")
     
     if result == "mission not available":
         logger.error(f"mission {id} not available")
@@ -90,7 +93,8 @@ def assign_mission(id: int, agent_id: int):
         raise HTTPException(status_code=400, detail="only Commander can handle critical missions")
 
     logger.info(f"assigning mission {id} for agent {agent_id}")
-    return result
+    return {"message": f"assigning mission {id} for agent {agent_id}",
+            "data": result}
 
 
 @router.put("/{id}/start")

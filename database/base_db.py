@@ -18,10 +18,10 @@ class BaseDB:
 
         with db.connect.cursor(dictionary=True) as cursor:
             cursor.execute(query, values)
-            agent_id = cursor.lastrowid
+            id = cursor.lastrowid
             db.connect.commit()
         
-        return self.get_by_id(agent_id)
+        return self.get_by_id(id)
 
 
     def get_all(self):
@@ -62,4 +62,4 @@ class BaseDB:
             cursor.execute(query, values)
             db.connect.commit()
         
-        return "Updated successfully"
+        return self.get_by_id(id)

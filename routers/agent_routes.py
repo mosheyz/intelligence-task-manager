@@ -9,6 +9,7 @@ class CreateAgent(BaseModel):
     specialty: str
     agent_rank: str
 
+
 class UpdateAgent(BaseModel):
     name: str | None = None
     specialty: str | None = None
@@ -27,23 +28,27 @@ def create_agent(data: CreateAgent):
         logger.error("invalid data")
         raise HTTPException(status_code=400, detail="invalid data")
     
-    logger.info(f"Agent created successfully: id={result["id"]}")
-    return result
+    logger.info(f"Agent created successfully: id={result['id']}")
+    return {"message": f"Agent created successfully: id={result['id']}",
+            "data": result}
 
 
 @router.get("")
 def get_all_agents():
     logger.info("GET /agents called")
-    
+    logger.info("start getting all agents..")
+
     result = agents.get_all_agents()
     
     logger.info("getting successfully all agents")
-    return result
+    return {"message": "getting successfully all agents",
+            "data": result}
 
 
 @router.get("/{id}")
 def get_agent_by_id(id: int):
     logger.info(f"GET /agents/{id} called")
+    logger.info(f"start gettig agent: {id}..")
 
     result = agents.get_agent_by_id(id)
     if result == "id not found":
@@ -51,7 +56,8 @@ def get_agent_by_id(id: int):
         raise HTTPException(status_code=404, detail=f"agent not found: {id}")
     
     logger.info(f"gettig agent: {id} successully")
-    return result
+    return {"message": f"gettig agent: {id} successully",
+            "data": result}
 
 @router.put("/{id}")
 def update_agent(id: int, data: UpdateAgent):

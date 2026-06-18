@@ -1,8 +1,10 @@
 from .base_db import BaseDB
 from database.db_connection import db
 
+
 valid_fields = ["name", "specialty", "agent_rank"]
 valid_rank = ["Junior", "Senior", "Commander"]
+
 
 class AgentDB(BaseDB):
     def __init__(self):
@@ -18,16 +20,19 @@ class AgentDB(BaseDB):
                 
         return self.create(data)
 
+
     def get_all_agents(self):
         return self.get_all()
-    
+
+
     def get_agent_by_id(self, id):
         agent = self.get_by_id(id)
         if agent == "id not found":
             return "id not found"
         
         return agent
-    
+
+
     def update_agent(self, id, data):
         agent = self.get_agent_by_id(id)
         if agent == "id not found":
@@ -44,6 +49,7 @@ class AgentDB(BaseDB):
         
         return self.update(id, data)
     
+
     def deactivate_agent(self, id):
         agent = self.get_by_id(id)
         if agent == "id not found":
@@ -51,6 +57,7 @@ class AgentDB(BaseDB):
         
         return self.update(id, {"is_active": 0})
     
+
     def increment_completed(self, id):
         agent = self.get_agent_by_id(id)
         if agent == "id not found":
@@ -64,8 +71,9 @@ class AgentDB(BaseDB):
                             """, [id])
             db.connect.commit()
 
-            return True
+            return self.get_agent_by_id(id)
     
+
     def increment_failed(self, id):
         agent = self.get_agent_by_id(id)
         if agent == "id not found":
@@ -79,8 +87,9 @@ class AgentDB(BaseDB):
                            """, [id])
             db.connect.commit()
 
-            return True
+            return self.get_agent_by_id(id)
         
+
     def get_agent_performance(self, id):
         agent = self.get_agent_by_id(id)
         if agent == "id not found":
@@ -110,5 +119,6 @@ class AgentDB(BaseDB):
                            """)
             active_num = cursor.fetchone()
             return active_num
+    
     
 agents = AgentDB()
