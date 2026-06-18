@@ -25,11 +25,11 @@ intelligence-task-manager/
 |field|type|constraint
 |-----|----|----------|
 |id|INT|AUTO_INCREMENT PRIMARY KEY|
-|name|VARCHAR|NUT NULL|
-|specialty|VARCHAR|NUT NULL|
-|is_active|BOOLEAN|DEFAULT 0 NOT NULL|
-|complete_mission|INT|DEFAULT 0|
-|failed_mission|INT|DEFAULT 0|
+|name|VARCHAR|NOT NULL|
+|specialty|VARCHAR|NOT NULL|
+|is_active|BOOLEAN|DEFAULT TRUE NOT NULL|
+|completed_missions|INT|DEFAULT 0|
+|failed_missions|INT|DEFAULT 0|
 |agent_rank|ENUM| (Junior, Senior, Commander)
 
 ### טבלת missions:
@@ -54,7 +54,7 @@ intelligence-task-manager/
 אחראי על החיבור הראשוני לdatabase, ועל יצירת הטבלאות. <br>
 מתודות:
 
-* get_cinection => חיבור ראשוני ל container
+* get_connection => חיבור ראשוני ל container
 * create_database => יצירת database אם לא קיים.
 * create_tables => יוצר טבלאות אם לא קיימות.
 
@@ -80,8 +80,8 @@ intelligence-task-manager/
 
 מתודות:
 * deactivate_agent => מקבלת id, ומשתמש במתודה update על מנת לשנות את שדה is_active = False
-* increment_completed => מקבלת id, מעלה את שדה complete_mission ב1.
-* increment_failed => מקבלת id, מעלה את שדה failed_mission ב1.
+* increment_completed => מקבלת id, מעלה את שדה complete_missions ב1.
+* increment_failed => מקבלת id, מעלה את שדה failed_missions ב1.
 * get_agent_performance => מקבלת id, מחזירה מילון עם המפתחות האלו completed, failed, total, success_rate עבור הסוכן.
 * count_active_agents => מחזירה את מספר הסוכנים הפעילים.
 
@@ -121,7 +121,7 @@ intelligence-task-manager/
 
 ```text
 
-pip install mysql-connectoe-python
+pip install mysql-connector-python
 
 docker run -d --name intelligence-mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=Intelligence_db -p 3306:3306 mysql:8.0
 
